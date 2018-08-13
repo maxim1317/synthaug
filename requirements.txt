@@ -1,0 +1,4 @@
+imgaug==0.2.6
+numpy==1.14.5
+Pillow==5.2.0
+paths==0.0.1a1
