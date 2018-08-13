@@ -25,7 +25,7 @@ def xml_to_xy(file):
     NON_OBJECT_LINE_COUNT = 15
     OBJECT_LINE_COUNT     = 12
 
-    boxes_count = int((len(lines) - NON_OBJECT_LINE_COUNT)/OBJECT_LINE_COUNT)
+    boxes_count = int((1 + len(lines) - NON_OBJECT_LINE_COUNT)/OBJECT_LINE_COUNT)
 
     xml_data.boxes = []
 
@@ -34,7 +34,7 @@ def xml_to_xy(file):
         name = lines[NON_OBJECT_LINE_COUNT - 2 + box * OBJECT_LINE_COUNT + 1].replace('<name>'  , '').replace('</name>'  , '').replace(' ', '').replace('\t', '').lstrip(' ').lstrip('\t')
 
         xmin = lines[NON_OBJECT_LINE_COUNT - 2 + box * OBJECT_LINE_COUNT + 6].replace('<xmin>'  , '').replace('</xmin>'  , '').replace(' ', '').replace('\t', '').lstrip(' ').lstrip('\t')
-        xmax = lines[NON_OBJECT_LINE_COUNT - 2 + box * OBJECT_LINE_COUNT + 7].replace('<xmax>'  , '').replace('</xmax>'  , '').replace(' ', '').replace('\t', '').lstrip(' ').lstrip('\t')
+        xmin = lines[NON_OBJECT_LINE_COUNT - 2 + box * OBJECT_LINE_COUNT + 7].replace('<xmax>'  , '').replace('</xmax>'  , '').replace(' ', '').replace('\t', '').lstrip(' ').lstrip('\t')
         ymin = lines[NON_OBJECT_LINE_COUNT - 2 + box * OBJECT_LINE_COUNT + 8].replace('<ymin>'  , '').replace('</ymin>'  , '').replace(' ', '').replace('\t', '').lstrip(' ').lstrip('\t')
         ymax = lines[NON_OBJECT_LINE_COUNT - 2 + box * OBJECT_LINE_COUNT + 9].replace('<ymax>'  , '').replace('</ymax>'  , '').replace(' ', '').replace('\t', '').lstrip(' ').lstrip('\t')
 
@@ -69,8 +69,8 @@ def xy_to_xml(path, xml_data):
                 '        <difficult>0</difficult>\n'                    +
                 '        <bndbox>\n'                                    +
                 '            <xmin>' + box['xmin'] + '</xmin>\n'        +
-                '            <ymin>' + box['ymin'] + '</ymin>\n'        +
                 '            <xmax>' + box['xmax'] + '</xmax>\n'        +
+                '            <ymin>' + box['ymin'] + '</ymin>\n'        +
                 '            <ymax>' + box['ymax'] + '</ymax>\n'        +
                 '        </bndbox>\n'                                   +
                 '    </object>\n'
